@@ -1,0 +1,34 @@
+{
+  "name": "@zerointermittency/date",
+  "version": "1.0.0",
+  "main": "ZIDate.js",
+  "scripts": {
+    "test": "nyc mocha --reporter spec --recursive",
+    "test-nyan": "mocha --reporter nyan --recursive",
+    "benchmark": "node --max_old_space_size=4096"
+  },
+  "keywords": [
+    "date",
+    "zerointermittency"
+  ],
+  "engines": ">=8.9.0",
+  "license": "MIT",
+  "homepage": "https://github.com/zerointermittency/date",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zerointermittency/date"
+  },
+  "bugs": {
+    "url": "https://github.com/zerointermittency/date/issues"
+  },
+  "dependencies": {
+    "@zerointermittency/error": "^1.0.0"
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.4",
+    "chai": "^4.1.2",
+    "mocha": "^3.5.0",
+    "moment": "^2.18.1",
+    "nyc": "^11.3.0"
+  }
+}
