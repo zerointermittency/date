@@ -1,6 +1,6 @@
 {
   "name": "@zerointermittency/date",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "ZIDate.js",
   "scripts": {
     "test": "nyc mocha --reporter spec --recursive",

@@ -24,6 +24,9 @@ let date = new ZIDate();
 
 > puede o no recibir un parámetro al ser instanciado, para mayor información ver la documentación de **[Date][date]**
 
+___
+___
+
 ##### Método **toISOString**
 
 Se sobrescribe este método para cuando sea utilizado no tenga mili segundos.
@@ -37,6 +40,10 @@ const ZIDate = require('@zerointermittency/date'),
 dateNunchee.toISOString(); // 2017-09-20T00:00:00Z
 ```
 
+___
+___
+
+
 ##### Método estático **toISOString**
 
 Realiza la misma función que el método anterior pero recibe como parámetro una instancia de **Date** o **ZIDate**.
@@ -45,6 +52,9 @@ Realiza la misma función que el método anterior pero recibe como parámetro un
 const dateDefault = new Date(1505865600000);
 ZIDate.toISOString(dateDefault); // 2017-09-20T00:00:00Z
 ```
+
+___
+___
 
 ##### Método **add**
 
@@ -57,6 +67,10 @@ const newDate = date.add(140, true); //inmutable
 
 Este método es el que nos permite manipular la fecha y agregarle los segundos que necesitemos por parámetro. En el ejemplo anterior se le agregar 140 segundos a la fecha (mutable), retorna el mismo objeto modificado o se le agrega los mismos 140 pero devuelve un nuevo objeto **[Date][date]** (inmutable).
 
+___
+___
+
+
 ##### Método **substract**
 
 ```javascript
@@ -67,6 +81,9 @@ const newDate = date.substract(140, true); //inmutable
 ```
 
 Este método es simplemente el inverso de **add**, ya que en vez de agregar segundos los quita.
+
+___
+___
 
 ##### Método **diff**
 
@@ -82,6 +99,9 @@ Este método entrega la diferencia entre las fechas, es positivo si la fecha pas
 
 > Los periodos de comparación aceptados son [year|Y, month|M, day|D, hour|h, minute|m, second|s], default **second**
 
+___
+___
+
 ##### Método **before**
 
 ```javascript
@@ -93,6 +113,9 @@ date2.before(date1); // true
 
 Este método entrega si una fecha es anterior a otra, se analiza si la fecha pasada por parámetro es mayor. Retorna verdadero o falso según corresponda.
 
+___
+___
+
 ##### Método **after**
 
 ```javascript
@@ -103,6 +126,9 @@ date2.after(date1); // true
 ```
 
 Este método entrega si una fecha es posterior a otra, se analiza si la fecha pasada por parámetro es menor. Retorna verdadero o falso según corresponda.
+
+___
+___
 
 ##### Método **equal**
 
@@ -135,9 +161,7 @@ Con el objetivo de que sea optimo el código se comparo la funcionalidad con una
 
 ```bash
 yarn benchmark benchmark/moment-date.js
-```
 
-```
 init moment x 1,518,778 ops/sec ±4.48% (82 runs sampled)
 init date x 5,212,516 ops/sec ±3.04% (87 runs sampled)
 Fastest is init date
@@ -159,9 +183,7 @@ Fastest is diff with getTime()
 
 ```bash
 yarn benchmark benchmark/MathTrunc-parseInt.js
-```
 
-```
 Math.trunc x 578,506,072 ops/sec ±1.02% (90 runs sampled)
 parseInt x 51,519,302 ops/sec ±4.34% (86 runs sampled)
 Fastest is Math.trunc
@@ -172,6 +194,10 @@ Fastest is Math.trunc
 Todos los cambios importantes son escritos aquí. El Formato esta basado en [Keep a Changelog](http://keepachangelog.com/es-ES/1.0.0/)
 
 ### [Unreleased]
+
+### [1.0.1] - 2018-01-08
+#### Changed
+- Actualización documentación
 
 ### [1.0.0] - 2018-01-04
 #### Added

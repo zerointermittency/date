@@ -1,6 +1,8 @@
 'use strict';
 
-const error = require('./core/error.js');
+const core = {
+    errors: require('./core/errors.js'),
+};
 
 class ZIDate extends Date {
 
@@ -27,8 +29,8 @@ class ZIDate extends Date {
     }
 
     add(seconds, inmutable) {
-        if (!seconds) throw error.paramRequired;
-        if (typeof seconds !== 'number') throw error.invalidType('number');
+        if (!seconds) throw core.errors.paramRequired;
+        if (typeof seconds !== 'number') throw core.errors.invalidType('number');
         if (inmutable) {
             let date = new ZIDate(this);
             date.setUTCSeconds(date.getUTCSeconds() + seconds);
@@ -39,8 +41,8 @@ class ZIDate extends Date {
     }
 
     substract(seconds, inmutable) {
-        if (!seconds) throw error.paramRequired;
-        if (typeof seconds !== 'number') throw error.invalidType('number');
+        if (!seconds) throw core.errors.paramRequired;
+        if (typeof seconds !== 'number') throw core.errors.invalidType('number');
         if (inmutable) {
             let date = new ZIDate(this);
             date.setUTCSeconds(date.getUTCSeconds() - seconds);
@@ -51,8 +53,8 @@ class ZIDate extends Date {
     }
 
     diff(date, period) {
-        if (!date) throw error.paramRequired;
-        if (!(date instanceof Date)) throw error.instanceof('Date');
+        if (!date) throw core.errors.paramRequired;
+        if (!(date instanceof Date)) throw core.errors.instanceof('Date');
         const periods = new Map(),
             // @n: wp => wrapper period
             wp = (cb, divisor) => (cb() / divisor);
@@ -66,13 +68,13 @@ class ZIDate extends Date {
         periods.set('day', () => wp(periods.get('D'), 1));
         if (!period) period = 'second';
         if (!periods.has(period))
-            throw error.invalidPeriod(period, ['day|D', 'hour|h', 'minute|m', 'second|s']);
+            throw core.errors.invalidPeriod(period, ['day|D', 'hour|h', 'minute|m', 'second|s']);
         return Math.trunc(periods.get(period)());
     }
 
     equal(date, period) {
-        if (!date) throw error.paramRequired;
-        if (!(date instanceof Date)) throw error.instanceof('Date');
+        if (!date) throw core.errors.paramRequired;
+        if (!(date instanceof Date)) throw core.errors.instanceof('Date');
         const periods = new Map(),
             // @n: anda a leer sobre enum flag en javascript
             s = 1,
@@ -109,21 +111,21 @@ class ZIDate extends Date {
         periods.set('second', periods.get('s'));
         if (!period) period = 'second';
         if (!periods.has(period))
-            throw error.invalidPeriod(
+            throw core.errors.invalidPeriod(
                 period, ['year|Y', 'month|M', 'day|D', 'hour|h', 'minute|m', 'second|s']
             );
         return getDate(this, periods.get(period)) === getDate(date, periods.get(period));
     }
 
     before(date) {
-        if (!date) throw error.paramRequired;
-        if (!(date instanceof Date)) throw error.instanceof('Date');
+        if (!date) throw core.errors.paramRequired;
+        if (!(date instanceof Date)) throw core.errors.instanceof('Date');
         return Math.trunc((this.getTime() - date.getTime()) / 1000) < 0;
     }
 
     after(date) {
-        if (!date) throw error.paramRequired;
-        if (!(date instanceof Date)) throw error.instanceof('Date');
+        if (!date) throw core.errors.paramRequired;
+        if (!(date instanceof Date)) throw core.errors.instanceof('Date');
         return Math.trunc((this.getTime() - date.getTime()) / 1000) > 0;
     }
 
